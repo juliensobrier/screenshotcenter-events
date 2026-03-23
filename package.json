@@ -1,0 +1,61 @@
+{
+  "name": "screenshotcenter-events",
+  "version": "1.0.0",
+  "description": "Event-driven library for ScreenshotCenter",
+  "keywords": [
+    "screenshot",
+    "screenshotcenter",
+    "events",
+    "web capture",
+    "monitoring"
+  ],
+  "author": "ScreenshotCenter <support@screenshotcenter.com>",
+  "license": "MIT",
+  "homepage": "https://screenshotcenter.com/api-reference",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juliensobrier/screenshotcenter-events"
+  },
+  "bugs": {
+    "url": "https://github.com/juliensobrier/screenshotcenter-events/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "npm run build:esm && npm run build:cjs && npm run build:types",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json",
+    "build:types": "tsc -p tsconfig.types.json",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "test:watch": "node --experimental-vm-modules node_modules/.bin/jest --watch",
+    "lint": "eslint src tests",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "screenshotcenter": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.7.0"
+  }
+}
